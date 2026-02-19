@@ -22,7 +22,7 @@ else
     source venv/bin/activate
 fi
 
-uvicorn main:app --reload --port 8000 &
+uvicorn main:app --reload --host 127.0.0.1 --port 8000 &
 BACKEND_PID=$!
 echo "   Backend PID: $BACKEND_PID"
 

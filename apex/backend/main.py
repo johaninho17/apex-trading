@@ -80,6 +80,15 @@ async def lifespan(app: FastAPI):
     logger.info("🛑 Apex Terminal shutting down...")
 
 
+# ── Rate Limiting ──
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
+from slowapi.middleware import SlowAPIMiddleware
+
+# Allow a generous default limit for normal usage but prevent endpoint spam bot crashes
+limiter = Limiter(key_func=get_remote_address, default_limits=["250/minute"])
+
 # ── FastAPI App ──
 app = FastAPI(
     title="Apex Trading Terminal",
@@ -88,10 +97,14 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_middleware(SlowAPIMiddleware)
+
 # CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -247,6 +260,13 @@ async def import_health():
 # ── Unified WebSocket Endpoint ──
 @app.websocket("/ws")
 async def websocket_endpoint(ws: WebSocket):
+    # Security: Verify the WebSocket connection originates from our trusted local frontend
+    origin = ws.headers.get("origin")
+    if origin != "http://localhost:5173":
+        logger.warning(f"Blocked unauthorized WebSocket connection from origin: {origin}")
+        await ws.close(code=1008, reason="invalid_origin")
+        return
+
     if global_state.is_paused:
         await ws.close(code=1008, reason="system_paused")
         return
