@@ -22,17 +22,17 @@ DEFAULT_CRYPTO_CONFIG: Dict[str, Any] = {
     "auto_discover_quote": "USD",
     "auto_discover_tradable_only": True,
     "min_order_notional_usd": 10.0,
-    "max_open_positions": 3,
-    "max_notional_per_trade": 15.0,
-    "max_total_exposure": 250.0,
-    "max_daily_drawdown_pct": 4.0,
+    "max_open_positions": 10,
+    "max_notional_per_trade": 5000.0,
+    "max_total_exposure": 50000.0,
+    "max_daily_drawdown_pct": 5.0,
     "cooldown_sec": 90,
     "anti_spam_sec": 30,
     "short_term": {
         "mean_reversion_enabled": True,
         "breakout_enabled": True,
-        "base_notional": 6.0,
-        "breakout_notional": 7.5,
+        "base_notional": 500.0,
+        "breakout_notional": 750.0,
         "rsi_oversold": 28.0,
         "rsi_overbought": 72.0,
         "breakout_lookback_bars": 20,
@@ -44,9 +44,9 @@ DEFAULT_CRYPTO_CONFIG: Dict[str, Any] = {
         "ma_crossover_enabled": True,
         "ma_fast": 50,
         "ma_slow": 200,
-        "crossover_notional": 8.0,
+        "crossover_notional": 800.0,
         "dca_enabled": True,
-        "dca_notional": 4.0,
+        "dca_notional": 250.0,
         "dca_interval_min": 180,
         "dca_dip_pct": 1.5,
         "dca_dip_multiplier": 1.5,
@@ -459,8 +459,23 @@ class CryptoBotRuntime:
                 if side == "buy":
                     if not pos and len(open_positions) >= max_open_positions:
                         continue
-                    desired_notional = max(min_order_notional, max(1.0, notional))
+                        
+                    # AI Dynamic Metric Sizing
+                    # Base score is 50. High conviction is > 50, reaching 100+.
+                    score = float(signal.get("score", 50.0))
+                    confidence_multiplier = 1.0
+                    if score > 50.0:
+                        # Exponential scaling: a score of 80 generates ~1.3x output, up to 2.8x at 100
+                        confidence_multiplier = max(1.0, ((score - 50.0) / 25.0) ** 1.5)
+                        
+                    dynamic_notional = notional * confidence_multiplier
+                    
+                    desired_notional = max(min_order_notional, max(1.0, dynamic_notional))
                     allowed_notional = min(max_notional, desired_notional)
+                    
+                    if confidence_multiplier > 1.0 and allowed_notional > min_order_notional:
+                        strategy_name += f" (AI Sized: {confidence_multiplier:.1f}x)"
+
                     if allowed_notional < min_order_notional:
                         _run_coro(store.record_action(
                             action_type="order_blocked",

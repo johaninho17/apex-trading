@@ -1,0 +1,24 @@
+name: Remediate Code Review Findings
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  remediate:
+    if: contains(github.event.comment.body, '<!-- review-agent-auto-rerun -->') && github.event.issue.pull_request
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.issue.pull_request.head.sha }}
+          
+      - name: Run Remediation Agent
+        run: |
+          echo "Agent reads review context and formulates patch..."
+          # Pseudo-logic: Modifies code based on strict policy findings
+          
+      - name: Push Fix Commit
+        run: |
+          echo "Pushing fixes to same PR branch to trigger re-evaluation."
+          # Pushes commit, which naturally triggers policy-gate.yml

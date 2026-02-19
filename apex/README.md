@@ -1,19 +1,19 @@
 # Apex
 
-Unified trading workspace that combines three previously separate projects into one app:
-- `alpaca` (stocks)
-- `kalshi` (event contracts)
-- `sportsbetting` (DFS tools)
+> **Note**: For the high-level project intents, architecture, and the Deterministic PR Agent Loop, please refer to the [Root README](../README.md).
 
-Apex provides a single FastAPI backend and a single React frontend with shared settings, shared notifications, and shared system live/offline controls.
+Apex is the unified trading workspace implementation encompassing:
+- `alpaca` (stocks & crypto)
+- `kalshi` (event contracts)
+- `dfs` (sports betting)
+
+This directory houses the codebase for the **FastAPI backend** and **React frontend**. It provides shared settings, synchronized notifications, and live/offline bot controls.
 
 ## What Apex Includes
 
-- Stocks (`/api/v1/alpaca`): portfolio, scanner, execution controls
-- Events (`/api/v1/kalshi`): market browsing, bot control, scalper endpoints
-- DFS (`/api/v1/dfs`): calculator, scanner/sniper, slip utilities
-- Research (`/api/v1/polymarket` + convergence): cross-market comparison workflows
-- System + notifications: websocket events, realtime alerts, persistent notification feed
+- **Stocks & Crypto** (`/api/v1/alpaca`): portfolio, scanner, dynamic execution engine.
+- **Events** (`/api/v1/kalshi`): market browsing, bot control, scalper endpoints.
+- **DFS** (`/api/v1/dfs`): calculator, scanner/sniper, auto-slip builders.
 
 ## Repository Layout
 

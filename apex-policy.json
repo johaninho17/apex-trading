@@ -1,0 +1,41 @@
+{
+    "version": "1",
+    "riskTierRules": {
+        "high": [
+            "apex/backend/integrations/alpaca/**",
+            "apex/backend/integrations/dfs/**",
+            "apex/backend/services/crypto/**",
+            "apex/backend/core/state.py",
+            "apex/backend/integrations/kalshi/**"
+        ],
+        "medium": [
+            "apex/backend/routers/**",
+            "apex/backend/services/**"
+        ],
+        "low": [
+            "apex/frontend/**"
+        ]
+    },
+    "mergePolicy": {
+        "high": {
+            "requiredChecks": [
+                "risk-policy-gate",
+                "harness-trading-simulation",
+                "ci-backend-strict"
+            ]
+        },
+        "medium": {
+            "requiredChecks": [
+                "risk-policy-gate",
+                "ci-backend-standard"
+            ]
+        },
+        "low": {
+            "requiredChecks": [
+                "risk-policy-gate",
+                "browser-evidence-ui",
+                "ci-frontend"
+            ]
+        }
+    }
+}

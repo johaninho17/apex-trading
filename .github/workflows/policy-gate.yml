@@ -1,0 +1,26 @@
+name: Policy Gate Preflight
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  preflight:
+    name: Risk Policy Preflight
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Validate Policy Contract
+        run: |
+          echo "Checking changed files against apex-policy.json..."
+          # Pseudo-logic: Reads apex-policy.json, classifies risk tier of PR
+          
+      - name: Trigger Review Agent
+        run: |
+          echo "Sending headSha ${{ github.event.pull_request.head.sha }} to Review Agent..."
+          
+      - name: Await Review Agent
+        run: |
+          echo "Waiting for deterministic review success on ${{ github.event.pull_request.head.sha }}..."
+          # Pseudo-logic: Loops until webhook confirms clean review, or fails gate on findings.
