@@ -1,0 +1,299 @@
+/* ── Scalper Hero ── */
+.scalper-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 28px !important;
+}
+
+.hero-price-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.hero-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.hero-price {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.hero-momentum {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 24px;
+}
+
+.hero-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+/* ── Contract List ── */
+.contract-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.contract-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.contract-row:hover {
+    background: var(--bg-card-hover);
+}
+
+.contract-row.selected {
+    background: var(--bg-card-hover);
+    border-left: 3px solid var(--accent-blue);
+}
+
+.contract-ticker {
+    font-weight: 600;
+    font-size: 13px;
+    min-width: 120px;
+}
+
+.contract-strike {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.contract-prices {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+}
+
+.contract-actions {
+    display: flex;
+    gap: 6px;
+}
+
+/* ── Qty Presets ── */
+.qty-presets {
+    display: flex;
+    gap: 6px;
+}
+
+/* ── Signal Feed ── */
+.signal-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.signal-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    border-left: 3px solid transparent;
+}
+
+.signal-row.bullish {
+    border-left-color: var(--accent-green);
+    background: var(--accent-green-dim);
+}
+
+.signal-row.bearish {
+    border-left-color: var(--accent-red);
+    background: var(--accent-red-dim);
+}
+
+.signal-icon {
+    flex-shrink: 0;
+}
+
+.signal-info {
+    flex: 1;
+}
+
+.signal-direction {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.signal-reasoning {
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.signal-confidence {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 100px;
+}
+
+/* ── Confidence Bar ── */
+.confidence-bar {
+    width: 60px;
+    height: 6px;
+    background: var(--bg-input);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.confidence-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width var(--transition-normal);
+}
+
+.confidence-bar.high .confidence-fill {
+    background: var(--accent-green);
+}
+
+.confidence-bar.medium .confidence-fill {
+    background: var(--accent-yellow);
+}
+
+.confidence-bar.low .confidence-fill {
+    background: var(--accent-red);
+}
+
+/* ── Orderbook Visualizer ── */
+.orderbook-viz {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.orderbook-symbol {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent-blue);
+    margin-bottom: 8px;
+}
+
+.orderbook-asks,
+.orderbook-bids {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.orderbook-row {
+    display: grid;
+    grid-template-columns: 1fr 70px 70px;
+    align-items: center;
+    padding: 3px 8px;
+    font-size: 12px;
+    border-radius: 2px;
+}
+
+.ob-bar-bg {
+    height: 18px;
+    background: transparent;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.ob-bar {
+    height: 100%;
+    border-radius: 2px;
+    transition: width var(--transition-fast);
+}
+
+.bid-bar {
+    background: rgba(0, 255, 136, 0.15);
+}
+
+.ask-bar {
+    background: rgba(255, 59, 48, 0.15);
+}
+
+.ob-price {
+    text-align: right;
+}
+
+.ob-size {
+    text-align: right;
+    color: var(--text-secondary);
+}
+
+.orderbook-mid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding: 6px 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    margin: 4px 0;
+}
+
+.ob-mid-price {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent-cyan);
+}
+
+.ob-spread {
+    font-size: 11px;
+}
+
+/* ── Snipe Alert Row (enhanced) ── */
+.snipe-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 6px;
+}
+
+.snipe-row.HIGH {
+    background: var(--accent-red-dim);
+    border-left: 3px solid var(--accent-red);
+    animation: flash-alert 2s ease infinite;
+}
+
+.snipe-row.MEDIUM {
+    background: var(--accent-yellow-dim);
+    border-left: 3px solid var(--accent-yellow);
+}
+
+.snipe-row.LOW {
+    background: var(--accent-green-dim);
+    border-left: 3px solid var(--accent-green);
+}
+
+@keyframes flash-alert {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}

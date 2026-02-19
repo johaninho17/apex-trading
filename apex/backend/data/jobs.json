@@ -1,0 +1,297 @@
+{
+  "jobs": [
+    {
+      "id": "a194598c-8a77-400e-b176-5e8e44e295df",
+      "domain": "alpaca",
+      "kind": "scanner",
+      "status": "failed_recovered",
+      "progress": 0,
+      "total": 0,
+      "message": "Scanner thread started",
+      "error": "Recovered stale job after 234937s without heartbeat",
+      "metadata": {
+        "strategy": "momentum"
+      },
+      "created_at": "2026-02-14T10:12:56.804519+00:00",
+      "updated_at": "2026-02-17T03:28:34.001395+00:00",
+      "started_at": "2026-02-14T10:12:56.805650+00:00",
+      "completed_at": "2026-02-17T03:28:34.001390+00:00"
+    },
+    {
+      "id": "35230581-3f52-4c18-bc10-fe60542cf664",
+      "domain": "dfs",
+      "kind": "smart_scan",
+      "status": "failed_recovered",
+      "progress": 0,
+      "total": 0,
+      "message": "DFS smart scan started",
+      "error": "Recovered stale job after 233639s without heartbeat",
+      "metadata": {
+        "sport": "nba",
+        "max_games": 3,
+        "trending_limit": 25
+      },
+      "created_at": "2026-02-14T10:34:34.142349+00:00",
+      "updated_at": "2026-02-17T03:28:34.001400+00:00",
+      "started_at": "2026-02-14T10:34:34.143163+00:00",
+      "completed_at": "2026-02-17T03:28:34.001398+00:00"
+    },
+    {
+      "id": "d9259d4d-17fb-4890-9764-cb2da24ec27b",
+      "domain": "dfs",
+      "kind": "smart_scan",
+      "status": "completed",
+      "progress": 0,
+      "total": 0,
+      "message": "DFS smart scan completed",
+      "error": null,
+      "metadata": {
+        "plays_found": 33,
+        "total_scanned": 296
+      },
+      "created_at": "2026-02-17T03:44:19.139173+00:00",
+      "updated_at": "2026-02-17T03:44:20.664354+00:00",
+      "started_at": "2026-02-17T03:44:19.140504+00:00",
+      "completed_at": "2026-02-17T03:44:20.664030+00:00"
+    },
+    {
+      "id": "fc625f6e-eef9-4808-9a35-314723476acc",
+      "domain": "dfs",
+      "kind": "smart_scan",
+      "status": "completed",
+      "progress": 0,
+      "total": 0,
+      "message": "DFS smart scan completed",
+      "error": null,
+      "metadata": {
+        "plays_found": 32,
+        "total_scanned": 296
+      },
+      "created_at": "2026-02-17T04:28:53.443481+00:00",
+      "updated_at": "2026-02-17T04:28:54.889471+00:00",
+      "started_at": "2026-02-17T04:28:53.445408+00:00",
+      "completed_at": "2026-02-17T04:28:54.889207+00:00"
+    },
+    {
+      "id": "b3e36148-8c67-4851-8930-d20a0bb429e9",
+      "domain": "dfs",
+      "kind": "bulk_scan",
+      "status": "completed",
+      "progress": 0,
+      "total": 0,
+      "message": "DFS bulk scan completed",
+      "error": null,
+      "metadata": {
+        "plays_found": 245,
+        "total_scanned": 2950
+      },
+      "created_at": "2026-02-17T05:52:24.469573+00:00",
+      "updated_at": "2026-02-17T05:52:27.071809+00:00",
+      "started_at": "2026-02-17T05:52:24.470084+00:00",
+      "completed_at": "2026-02-17T05:52:27.071682+00:00"
+    },
+    {
+      "id": "69c06c6c-bda0-477f-9915-c6f622ad44d0",
+      "domain": "dfs",
+      "kind": "smart_scan",
+      "status": "completed",
+      "progress": 0,
+      "total": 0,
+      "message": "DFS smart scan completed",
+      "error": null,
+      "metadata": {
+        "plays_found": 84,
+        "total_scanned": 1076
+      },
+      "created_at": "2026-02-17T05:57:21.141898+00:00",
+      "updated_at": "2026-02-17T05:57:22.654485+00:00",
+      "started_at": "2026-02-17T05:57:21.142997+00:00",
+      "completed_at": "2026-02-17T05:57:22.654239+00:00"
+    },
+    {
+      "id": "e04e8ce0-a9ab-406a-8221-332c6fd141b5",
+      "domain": "dfs",
+      "kind": "smart_scan",
+      "status": "completed",
+      "progress": 0,
+      "total": 0,
+      "message": "DFS smart scan completed",
+      "error": null,
+      "metadata": {
+        "plays_found": 84,
+        "total_scanned": 1076
+      },
+      "created_at": "2026-02-17T06:06:10.920070+00:00",
+      "updated_at": "2026-02-17T06:06:12.360665+00:00",
+      "started_at": "2026-02-17T06:06:10.921196+00:00",
+      "completed_at": "2026-02-17T06:06:12.360211+00:00"
+    },
+    {
+      "id": "52698a55-a5e7-46ab-b70f-fafdb7a11cee",
+      "domain": "dfs",
+      "kind": "smart_scan",
+      "status": "completed",
+      "progress": 0,
+      "total": 0,
+      "message": "DFS smart scan completed",
+      "error": null,
+      "metadata": {
+        "plays_found": 84,
+        "total_scanned": 1076
+      },
+      "created_at": "2026-02-17T06:06:28.534877+00:00",
+      "updated_at": "2026-02-17T06:06:29.787448+00:00",
+      "started_at": "2026-02-17T06:06:28.535642+00:00",
+      "completed_at": "2026-02-17T06:06:29.787275+00:00"
+    },
+    {
+      "id": "83bc0c6d-490d-4450-b028-f5e9cc5961c0",
+      "domain": "dfs",
+      "kind": "smart_scan",
+      "status": "completed",
+      "progress": 0,
+      "total": 0,
+      "message": "DFS smart scan served from cache",
+      "error": null,
+      "metadata": {
+        "sport": "nba",
+        "max_games": 3,
+        "trending_limit": 25
+      },
+      "created_at": "2026-02-17T06:06:32.922854+00:00",
+      "updated_at": "2026-02-17T06:06:32.928533+00:00",
+      "started_at": "2026-02-17T06:06:32.924942+00:00",
+      "completed_at": "2026-02-17T06:06:32.928344+00:00"
+    },
+    {
+      "id": "8b628bb6-2d27-4975-a67c-be07752f4337",
+      "domain": "dfs",
+      "kind": "smart_scan",
+      "status": "completed",
+      "progress": 0,
+      "total": 0,
+      "message": "DFS smart scan served from cache",
+      "error": null,
+      "metadata": {
+        "sport": "nba",
+        "max_games": 3,
+        "trending_limit": 25
+      },
+      "created_at": "2026-02-17T06:06:34.285220+00:00",
+      "updated_at": "2026-02-17T06:06:34.286628+00:00",
+      "started_at": "2026-02-17T06:06:34.285908+00:00",
+      "completed_at": "2026-02-17T06:06:34.286540+00:00"
+    },
+    {
+      "id": "ff39605f-2f54-42f0-b02c-9d2979ac7e13",
+      "domain": "dfs",
+      "kind": "smart_scan",
+      "status": "running",
+      "progress": 0,
+      "total": 0,
+      "message": "DFS smart scan started",
+      "error": null,
+      "metadata": {
+        "sport": "nba",
+        "max_games": 3,
+        "trending_limit": 25
+      },
+      "created_at": "2026-02-18T23:00:32.774836+00:00",
+      "updated_at": "2026-02-18T23:00:32.776630+00:00",
+      "started_at": "2026-02-18T23:00:32.776454+00:00",
+      "completed_at": null
+    },
+    {
+      "id": "95b21789-8ede-4c8c-bcd7-c0064a69eb8f",
+      "domain": "dfs",
+      "kind": "smart_scan",
+      "status": "running",
+      "progress": 0,
+      "total": 0,
+      "message": "DFS smart scan started",
+      "error": null,
+      "metadata": {
+        "sport": "nba",
+        "max_games": 3,
+        "trending_limit": 25
+      },
+      "created_at": "2026-02-18T23:03:25.218953+00:00",
+      "updated_at": "2026-02-18T23:03:25.223321+00:00",
+      "started_at": "2026-02-18T23:03:25.223004+00:00",
+      "completed_at": null
+    },
+    {
+      "id": "27b5638c-40b0-45d2-a155-fef56362a290",
+      "domain": "dfs",
+      "kind": "smart_scan",
+      "status": "running",
+      "progress": 0,
+      "total": 0,
+      "message": "DFS smart scan started",
+      "error": null,
+      "metadata": {
+        "sport": "nba",
+        "max_games": 3,
+        "trending_limit": 25
+      },
+      "created_at": "2026-02-18T23:09:09.104428+00:00",
+      "updated_at": "2026-02-18T23:09:09.106654+00:00",
+      "started_at": "2026-02-18T23:09:09.106386+00:00",
+      "completed_at": null
+    },
+    {
+      "id": "5438357e-73f8-418b-8f4a-4eb4548908cf",
+      "domain": "dfs",
+      "kind": "smart_scan",
+      "status": "failed",
+      "progress": 0,
+      "total": 0,
+      "message": "DFS smart scan started",
+      "error": "[Errno 8] nodename nor servname provided, or not known",
+      "metadata": {
+        "sport": "nba",
+        "max_games": 3,
+        "trending_limit": 25
+      },
+      "created_at": "2026-02-18T23:09:17.327189+00:00",
+      "updated_at": "2026-02-18T23:09:17.395410+00:00",
+      "started_at": "2026-02-18T23:09:17.328461+00:00",
+      "completed_at": "2026-02-18T23:09:17.395303+00:00"
+    },
+    {
+      "id": "356de4b4-9df9-4bce-9479-b16653a0911a",
+      "domain": "dfs",
+      "kind": "smart_scan",
+      "status": "completed",
+      "progress": 0,
+      "total": 0,
+      "message": "DFS smart scan unavailable (Sleeper connection failure)",
+      "error": null,
+      "metadata": {
+        "reason": "sleeper_unreachable"
+      },
+      "created_at": "2026-02-18T23:09:57.782848+00:00",
+      "updated_at": "2026-02-18T23:09:57.845274+00:00",
+      "started_at": "2026-02-18T23:09:57.785847+00:00",
+      "completed_at": "2026-02-18T23:09:57.845097+00:00"
+    },
+    {
+      "id": "a4a29db0-2a12-4a6d-a5cc-3c3eef567037",
+      "domain": "dfs",
+      "kind": "smart_scan",
+      "status": "completed",
+      "progress": 0,
+      "total": 0,
+      "message": "DFS smart scan completed",
+      "error": null,
+      "metadata": {
+        "plays_found": 167,
+        "total_scanned": 808
+      },
+      "created_at": "2026-02-18T23:30:18.718288+00:00",
+      "updated_at": "2026-02-18T23:30:20.229911+00:00",
+      "started_at": "2026-02-18T23:30:18.719586+00:00",
+      "completed_at": "2026-02-18T23:30:20.229656+00:00"
+    }
+  ]
+}

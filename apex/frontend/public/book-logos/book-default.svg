@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="32" viewBox="0 0 80 32" role="img" aria-label="Sportsbook">
+  <rect width="80" height="32" rx="6" fill="#1e2540"/>
+  <rect x="8" y="8" width="13" height="16" rx="2" fill="none" stroke="#5e7ab5" stroke-width="1.5"/>
+  <rect x="10" y="11" width="9" height="1.5" rx="0.75" fill="#5e7ab5"/>
+  <rect x="10" y="14" width="9" height="1.5" rx="0.75" fill="#5e7ab5"/>
+  <rect x="10" y="17" width="6" height="1.5" rx="0.75" fill="#5e7ab5"/>
+  <text x="52" y="20" text-anchor="middle" font-family="Arial,sans-serif" font-size="7.5" font-weight="700" fill="#8fa8d8">BOOK</text>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="32" viewBox="0 0 80 32" role="img" aria-label="BetRivers">
+  <rect width="80" height="32" rx="6" fill="#003057"/>
+  <path d="M10 22 Q25 12 40 16 Q55 20 70 10" stroke="#00b4f0" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <text x="40" y="29" text-anchor="middle" font-family="Arial,sans-serif" font-size="7" font-weight="700" fill="#ffffff" letter-spacing="1">BETRIVERS</text>
+</svg>

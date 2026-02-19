@@ -1,0 +1,373 @@
+/* TradePanel — Reusable Order Widget */
+.trade-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    backdrop-filter: blur(12px);
+}
+
+.trade-panel.compact {
+    padding: 16px;
+}
+
+.trade-panel.compact .tp-header h3 {
+    font-size: 1rem;
+}
+
+/* Header */
+.tp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.tp-header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.tp-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.15s;
+}
+
+.tp-close:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* Type Toggle */
+.tp-type-toggle {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.tp-type-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tp-type-btn:hover {
+    border-color: var(--color-alpaca);
+    color: var(--text-primary);
+}
+
+.tp-type-btn.active {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: var(--color-alpaca);
+    color: var(--color-alpaca);
+}
+
+/* Side Selector */
+.tp-side-selector {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.tp-side-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-secondary);
+}
+
+.tp-side-btn.buy.active {
+    background: rgba(45, 63, 103, 0.34);
+    border-color: var(--btn-indigo-steel-border-hover);
+    color: var(--btn-indigo-steel-text);
+}
+
+.tp-side-btn.sell.active {
+    background: rgba(239, 68, 68, 0.12);
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+/* Form */
+.tp-form-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.tp-field {
+    flex: 1;
+}
+
+.tp-field label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.tp-input {
+    width: 100%;
+    padding: 8px 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.tp-input:focus {
+    border-color: var(--color-alpaca);
+}
+
+.tp-input.mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+}
+
+.tp-input.stop:focus {
+    border-color: #ef4444;
+}
+
+.tp-input.profit:focus {
+    border-color: #22c55e;
+}
+
+.tp-input::-webkit-inner-spin-button {
+    display: none;
+}
+
+select.tp-input {
+    cursor: pointer;
+    appearance: auto;
+}
+
+/* Submit */
+.tp-submit {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 4px;
+}
+
+.tp-submit.buy {
+    background: linear-gradient(135deg,
+            var(--btn-indigo-steel-start) 0%,
+            var(--btn-indigo-steel-mid) 55%,
+            var(--btn-indigo-steel-end) 100%);
+    color: var(--btn-indigo-steel-text);
+    border: 1px solid var(--btn-indigo-steel-border);
+}
+
+.tp-submit.sell {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+}
+
+.tp-submit:hover:not(:disabled) {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+.tp-submit:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Result */
+.tp-result {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 10px;
+    font-size: 0.8rem;
+}
+
+.tp-result.success {
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    color: #22c55e;
+}
+
+.tp-result.error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+}
+
+.tp-result p {
+    margin: 2px 0 0;
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+/* Confirmation Modal */
+.tp-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.tp-confirm-modal {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    min-width: 340px;
+    max-width: 420px;
+    backdrop-filter: blur(20px);
+}
+
+.tp-confirm-modal h4 {
+    margin: 0 0 16px;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.tp-confirm-details {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 16px;
+}
+
+.tp-confirm-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.tp-confirm-row:last-child {
+    border-bottom: none;
+}
+
+.tp-confirm-row .stop {
+    color: #ef4444;
+}
+
+.tp-confirm-row .profit {
+    color: #22c55e;
+}
+
+.tp-confirm-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.tp-confirm-cancel {
+    flex: 1;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.tp-confirm-cancel:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.tp-confirm-submit {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    background: linear-gradient(135deg,
+            var(--btn-indigo-steel-start) 0%,
+            var(--btn-indigo-steel-mid) 55%,
+            var(--btn-indigo-steel-end) 100%);
+    border: 1px solid var(--btn-indigo-steel-border);
+    border-radius: 8px;
+    color: var(--btn-indigo-steel-text);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.tp-confirm-submit:hover:not(:disabled) {
+    background: linear-gradient(135deg,
+            var(--btn-indigo-steel-hover-start) 0%,
+            var(--btn-indigo-steel-hover-mid) 55%,
+            var(--btn-indigo-steel-hover-end) 100%);
+    border-color: var(--btn-indigo-steel-border-hover);
+    box-shadow: var(--shadow-glow-indigo);
+}
+
+.tp-confirm-submit:disabled {
+    opacity: 0.5;
+}
+
+.mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.spin {
+    animation: tp-spin 1s linear infinite;
+}
+
+@keyframes tp-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

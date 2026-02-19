@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="32" viewBox="0 0 80 32" role="img" aria-label="Bovada">
+  <rect width="80" height="32" rx="6" fill="#c8102e"/>
+  <text x="40" y="13" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="900" fill="#ffffff" letter-spacing="1">BOVADA</text>
+  <rect x="18" y="17" width="44" height="1.5" rx="0.75" fill="rgba(255,255,255,0.5)"/>
+  <text x="40" y="27" text-anchor="middle" font-family="Arial,sans-serif" font-size="5.5" font-weight="600" fill="rgba(255,255,255,0.8)" letter-spacing="1.5">SPORTSBOOK</text>
+</svg>

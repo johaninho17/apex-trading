@@ -1,0 +1,54 @@
+# macOS
+.DS_Store
+
+# Python caches/environments
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.venv/
+venv/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build artifacts
+dist/
+build/
+coverage/
+
+# Local env/config secrets
+.env
+.env.*
+!.env.example
+
+# Ship apex only from trading root
+tasks/
+GEMINI.md
+
+# Apex runtime/local artifacts
+apex/backend/venv/
+apex/backend/.env
+apex/backend/config.json
+apex/frontend/node_modules/
+apex/frontend/dist/
+
+# Vendored integration runtime artifacts
+apex/backend/integrations/**/__pycache__/
+apex/backend/integrations/**/*.pyc
+apex/backend/integrations/alpaca/scan_results.json
+apex/backend/integrations/alpaca/scan_status.json
+apex/backend/integrations/alpaca/scanner_results*.csv
+apex/backend/integrations/alpaca/top_movers.csv
+apex/backend/integrations/alpaca/analysis_summary.csv
+apex/backend/integrations/alpaca/trade_setups.csv
+apex/backend/integrations/alpaca/market_status.json
+apex/backend/integrations/**/*.log

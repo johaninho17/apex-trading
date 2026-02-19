@@ -1,0 +1,246 @@
+/* ── ConfigHelp.css ── */
+
+.config-help {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 860px;
+}
+
+/* ── Accordion ── */
+.help-accordion {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.help-accordion.open {
+    border-color: rgba(99, 102, 241, 0.25);
+}
+
+.accordion-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.accordion-header:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.accordion-chevron {
+    color: var(--text-tertiary);
+    transition: transform 0.2s ease;
+}
+
+.accordion-chevron.open {
+    transform: rotate(180deg);
+}
+
+.accordion-body {
+    padding: 0 20px 20px;
+}
+
+.accordion-body h3 {
+    margin: 20px 0 8px 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.accordion-body h3:first-child {
+    margin-top: 4px;
+}
+
+.accordion-body p {
+    margin: 0 0 10px 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+}
+
+/* ── Dual Brain Card ── */
+.help-card.dual-brain {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.brain-col {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.brain-col h4 {
+    margin: 0 0 8px 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.brain-col p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    line-height: 1.6;
+}
+
+/* ── Formula Block ── */
+.help-formula {
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-family: var(--font-mono, 'SF Mono', monospace);
+}
+
+.help-formula code {
+    background: rgba(99, 102, 241, 0.15);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+}
+
+/* ── Table ── */
+.help-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.82rem;
+}
+
+.help-table th {
+    text-align: left;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-tertiary);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+}
+
+.help-table td {
+    padding: 8px 12px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.help-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* ── List ── */
+.help-list {
+    margin: 8px 0;
+    padding-left: 20px;
+}
+
+.help-list li {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 4px;
+}
+
+/* ── Note ── */
+.help-note {
+    font-size: 0.78rem !important;
+    color: var(--text-tertiary) !important;
+    font-style: italic;
+    padding-left: 12px;
+    border-left: 2px solid rgba(99, 102, 241, 0.3);
+}
+
+/* ── Help Block ── */
+.help-block {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.help-block:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+/* ── Strategy Cards ── */
+.strategy-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.strategy-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    border-left: 3px solid transparent;
+}
+
+.strategy-card.aggressive {
+    border-left-color: #ef4444;
+}
+
+.strategy-card.conservative {
+    border-left-color: #22c55e;
+}
+
+.strategy-card.trend {
+    border-left-color: #3b82f6;
+}
+
+.strategy-card.surfer {
+    border-left-color: #a855f7;
+}
+
+.strategy-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.strategy-rules {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.rule-label {
+    display: inline-block;
+    width: 50px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+
+    .help-card.dual-brain,
+    .strategy-cards {
+        grid-template-columns: 1fr;
+    }
+}

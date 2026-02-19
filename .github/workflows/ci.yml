@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apex/backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+      - name: Compile check
+        run: python -m py_compile main.py routers/*.py services/*.py tests/*.py
+      - name: Ruff lint
+        run: ruff check main.py routers/kalshi.py routers/polymarket.py routers/dfs.py tests/
+      - name: Mypy type check
+        run: mypy main.py routers/kalshi.py routers/polymarket.py routers/dfs.py tests/
+      - name: Smoke tests
+        run: pytest -q tests/test_smoke_api.py
+      - name: API contract tests
+        run: pytest -q tests/test_api_contracts.py
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apex/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: apex/frontend/package-lock.json
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build
