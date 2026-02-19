@@ -20,8 +20,10 @@ jobs:
         id: pr-agent
         uses: Codium-ai/pr-agent@main
         env:
-          # You must add OPENAI_API_KEY to your GitHub Secrets for this to run
-          OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
+          # You must add ANTHROPIC_KEY to your GitHub Secrets for this to run
+          config.model: "anthropic/claude-3-5-sonnet-20241022"
+          config.fallback_models: "anthropic/claude-3-haiku-20240307"
+          ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
           # Core triggers
