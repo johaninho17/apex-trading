@@ -1,0 +1,19 @@
+[pr_reviewer]
+extra_instructions = """
+You are the Apex Trading Deterministic Review Agent. 
+Before suggesting anything, refer to apex-policy.json.
+Your primary role is to ensure no unchecked financial logic or broken execution routes make it to the main branch.
+If a user is adding new order logic, demand test coverage.
+"""
+require_score_review = true
+require_tests_review = true
+
+[pr_description]
+generate_ai_title = true
+add_original_user_description = true
+
+[pr_code_suggestions]
+num_code_suggestions = 5
+extra_instructions = """
+If you find a bug in execution or a violation of crypto configuration thresholds, provide an exact code replacement.
+"""

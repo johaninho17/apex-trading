@@ -1,0 +1,38 @@
+name: Autonomous AI PR Agent
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review, synchronize]
+  issue_comment:
+    types: [created, edited]
+
+jobs:
+  pr_agent_job:
+    if: ${{ github.event.sender.type != 'Bot' }}
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      contents: write
+    name: Autonomous Review and Remediation
+    steps:
+      - name: Run PR Agent
+        id: pr-agent
+        uses: Codium-ai/pr-agent@main
+        env:
+          # You must add OPENAI_API_KEY to your GitHub Secrets for this to run
+          OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          # Core triggers
+          github_action_config.auto_review: "true"
+          github_action_config.auto_describe: "true"
+          github_action_config.auto_improve: "true"
+          
+          # Agentic Configurations
+          PR_REVIEWER.EXTRA_INSTRUCTIONS: "Adhere to the risk tiers outlined in apex-policy.json. If high-risk code lacks a harness-trading-simulation or modifies core logic without strict validation, FAIL the review."
+          PR_CODE_SUGGESTIONS.EXTRA_INSTRUCTIONS: "You have auto-fix capabilities. Create actionable, strict patches. Do not relax execution checks or bypass minimum notional constraints."
+          
+          # Allow the agent to push fixes directly if humans command: /improve --commit
+          PR_CODE_SUGGESTIONS.COMMITS_USER_NAME: "Apex PR Agent"
+          PR_CODE_SUGGESTIONS.COMMITS_USER_EMAIL: "action@github.com"
