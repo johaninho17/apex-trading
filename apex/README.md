@@ -47,7 +47,7 @@ apex/
 ### 1. Clone and enter project
 
 ```bash
-cd /Users/johan/Projects/trading/apex
+cd <project_root>/apex
 ```
 
 ### 2. Backend environment
@@ -72,11 +72,11 @@ These files are local-only and should never be committed with secrets or persona
 
 ### `backend/.env`
 
-Create `/Users/johan/Projects/trading/apex/backend/.env` for backend runtime secrets used by Apex.
+Create `<project_root>/apex/backend/.env` for backend runtime secrets used by Apex.
 
 ### `backend/config.json` (required)
 
-Create `/Users/johan/Projects/trading/apex/backend/config.json` before running the app.
+Create `<project_root>/apex/backend/config.json` before running the app.
 This file stores UI settings/toggles (for example `events.kalshi.trading_mode`) and is persisted by the Settings API.
 
 Example starter file:
@@ -137,7 +137,7 @@ Example starter file:
 ### One command
 
 ```bash
-cd /Users/johan/Projects/trading/apex
+cd <project_root>/apex
 chmod +x run.sh
 ./run.sh
 ```
@@ -147,7 +147,7 @@ chmod +x run.sh
 Backend:
 
 ```bash
-cd /Users/johan/Projects/trading/apex/backend
+cd <project_root>/apex/backend
 source venv/bin/activate
 uvicorn main:app --reload --port 8000
 ```
@@ -155,7 +155,7 @@ uvicorn main:app --reload --port 8000
 Frontend:
 
 ```bash
-cd /Users/johan/Projects/trading/apex/frontend
+cd <project_root>/apex/frontend
 npm run dev
 ```
 
@@ -168,7 +168,7 @@ npm run dev
 ## Settings and Toggles Behavior
 
 - UI toggles do **not** modify `.env` files.
-- Toggles persist to `/Users/johan/Projects/trading/apex/backend/config.json` via `/api/v1/settings`.
+- Toggles persist to `<project_root>/apex/backend/config.json` via `/api/v1/settings`.
 - `Trading Mode` in Events settings controls execution gating:
   - `Live`: execution endpoints allowed
   - `Offline`: execution blocked, detection alerts can still fire
@@ -190,14 +190,14 @@ npm run dev
 Backend tests:
 
 ```bash
-cd /Users/johan/Projects/trading/apex/backend
+cd <project_root>/apex/backend
 ./venv/bin/python -m pytest tests/test_smoke_api.py tests/test_api_contracts.py -q
 ```
 
 Frontend build:
 
 ```bash
-cd /Users/johan/Projects/trading/apex/frontend
+cd <project_root>/apex/frontend
 npm run build
 ```
 
