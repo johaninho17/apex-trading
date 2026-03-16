@@ -2,7 +2,7 @@
 .layout {
     display: flex;
     height: 100vh;
-    height: -webkit-fill-available;
+    height: 100dvh;
     width: 100%;
     /* Fix: use full browser width */
     overflow: hidden;
@@ -67,6 +67,16 @@
 .collapse-btn:hover {
     color: var(--text-primary);
     background: var(--bg-card);
+}
+
+.collapse-btn:focus-visible,
+.search-trigger:focus-visible,
+.nav-group-header:focus-visible,
+.nav-item:focus-visible,
+.sidebar-footer:focus-visible,
+.domain-dropup-item:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--color-alpaca) 70%, white 8%);
+    outline-offset: 2px;
 }
 
 /* Nav */

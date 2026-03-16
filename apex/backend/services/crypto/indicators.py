@@ -1,6 +1,7 @@
 from typing import Any, Dict
 import pandas as pd
 
+import numpy as np
 
 def _rsi(close: pd.Series, period: int = 14) -> pd.Series:
     delta = close.diff()
@@ -8,9 +9,10 @@ def _rsi(close: pd.Series, period: int = 14) -> pd.Series:
     down = (-delta).clip(lower=0.0)
     avg_up = up.ewm(alpha=1.0 / max(1, period), adjust=False).mean()
     avg_down = down.ewm(alpha=1.0 / max(1, period), adjust=False).mean()
-    rs = avg_up / avg_down.replace(0.0, pd.NA)
+    rs = avg_up / avg_down.replace(0.0, np.nan)
     rsi = 100.0 - (100.0 / (1.0 + rs))
     return rsi.fillna(50.0)
+
 
 
 def enrich_indicators(df: pd.DataFrame, fast_ma: int = 50, slow_ma: int = 200) -> pd.DataFrame:

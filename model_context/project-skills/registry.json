@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "workflow": {
+    "mode": "auto-draft-review-promote",
+    "draft_root": "model_context/project-skills",
+    "promotion_rule": "Draft skills stay repo-local until reused and validated across multiple sessions."
+  },
+  "skills": [
+    {
+      "slug": "crypto-news-attribution",
+      "status": "draft",
+      "summary": "Free-first crypto news source, attribution, and symbol-confidence workflow."
+    },
+    {
+      "slug": "crypto-shell-validation",
+      "status": "draft",
+      "summary": "WSL-first shell, timing-smoke, and readiness validation workflow for the crypto terminal."
+    },
+    {
+      "slug": "crypto-simulation-lab",
+      "status": "draft",
+      "summary": "Simulation Lab workflow grounded in the existing crypto backtest engine."
+    },
+    {
+      "slug": "simulation-safeguard-audit",
+      "status": "draft",
+      "summary": "Auto-drafted example skill to validate the repo-local project skill workflow."
+    },
+    {
+      "slug": "telegram-intelligence",
+      "status": "draft",
+      "summary": "NL-first Telegram retrieval and presenter workflow for crypto bot context."
+    },
+    {
+      "slug": "tracked-coins-runtime",
+      "status": "draft",
+      "summary": "Tracked, active, and recently-active crypto runtime semantics."
+    },
+    {
+      "slug": "wsl-runtime-ops",
+      "status": "draft",
+      "summary": "WSL cutover, backend boot, Ollama lifecycle, and runtime checks."
+    }
+  ]
+}

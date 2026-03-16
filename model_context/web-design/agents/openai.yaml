@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vercel Web Interface Guidelines"
+  short_description: "Frontend accessibility and UX audit checklist"
+  default_prompt: "Use $vercel-web-interface-guidelines to review these UI files for accessibility, interaction, and interface-guideline issues."

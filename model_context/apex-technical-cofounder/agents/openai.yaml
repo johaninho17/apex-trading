@@ -1,0 +1,4 @@
+interface:
+  display_name: "Apex Technical Co-Founder"
+  short_description: "Apex repo execution and product-context guide"
+  default_prompt: "Use $apex-technical-cofounder to plan and implement this Apex repo task with the project's workflow and product context."

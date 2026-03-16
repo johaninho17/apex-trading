@@ -15,8 +15,8 @@ class GlobalState:
         if self.domain_paused is None:
             self.domain_paused = {
                 "stocks": False,
-                "events": False,
-                "sports": False,
+                "events": True,
+                "sports": True,
             }
 
     @property

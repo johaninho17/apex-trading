@@ -982,3 +982,103 @@
         position: static;
     }
 }
+
+/* ── Fine-Tune Button & States ─────────────────────────────────── */
+.fine-tune-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fine-tune-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(159, 194, 255, 0.4);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(59, 130, 246, 0.12));
+    color: #9fc2ff;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.fine-tune-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.28), rgba(59, 130, 246, 0.22));
+    border-color: rgba(159, 194, 255, 0.7);
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.25);
+}
+
+.fine-tune-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.fine-tune-btn.failed {
+    border-color: rgba(248, 113, 113, 0.4);
+    color: #f87171;
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(185, 28, 28, 0.08));
+}
+
+.fine-tune-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.fine-tune-badge.complete {
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    color: #4ade80;
+}
+
+.fine-tune-badge.training {
+    background: rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.35);
+    color: #818cf8;
+}
+
+.ppo-inline {
+    background: rgba(34, 197, 94, 0.15);
+    border-radius: 6px;
+    padding: 1px 7px;
+    font-size: 0.72rem;
+    margin-left: 4px;
+}
+
+/* PPO Placeholder in card */
+.ppo-card {
+    border-color: rgba(99, 102, 241, 0.25) !important;
+}
+
+.ppo-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    padding: 16px 8px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.ppo-placeholder p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* 4-column grid when PPO card is added */
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}

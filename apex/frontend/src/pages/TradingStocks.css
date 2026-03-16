@@ -1,0 +1,889 @@
+/* ──────────────────────────────────────────────────────────────────
+   TradingStocks.css — Unified Stock Trading Hub
+────────────────────────────────────────────────────────────────── */
+
+/* ── Modern scrollbar (applied to every scrollable child) ───────── */
+.trading-stocks-page *,
+.ts-slm-terminal,
+.ts-results-wrap,
+.ts-movers-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99, 102, 241, 0.35) transparent;
+}
+
+.trading-stocks-page *::-webkit-scrollbar,
+.ts-slm-terminal::-webkit-scrollbar,
+.ts-results-wrap::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+.trading-stocks-page *::-webkit-scrollbar-track,
+.ts-slm-terminal::-webkit-scrollbar-track,
+.ts-results-wrap::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.trading-stocks-page *::-webkit-scrollbar-thumb,
+.ts-slm-terminal::-webkit-scrollbar-thumb,
+.ts-results-wrap::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.35);
+    border-radius: 4px;
+}
+
+.trading-stocks-page *::-webkit-scrollbar-thumb:hover,
+.ts-slm-terminal::-webkit-scrollbar-thumb:hover,
+.ts-results-wrap::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.6);
+}
+
+.trading-stocks-page {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    max-width: 100%;
+    min-height: 100%;
+}
+
+/* ── Search Row ─────────────────────────────────────────────────── */
+.ts-search-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ts-search-wrap {
+    position: relative;
+    max-width: 720px;
+}
+
+.ts-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ts-search-bar:focus-within {
+    border-color: var(--color-alpaca);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-alpaca) 15%, transparent);
+}
+
+.ts-search-icon {
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+
+.ts-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.ts-search-input::placeholder {
+    color: var(--text-muted);
+}
+
+.ts-search-go {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--color-alpaca);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+}
+
+.ts-search-go:hover {
+    opacity: 0.85;
+}
+
+.ts-search-hint {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin: 0;
+    padding-left: 4px;
+}
+
+.ts-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 100;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.ts-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.ts-dropdown-item:hover,
+.ts-dropdown-item.highlighted {
+    background: var(--bg-surface);
+}
+
+.ts-drop-sym {
+    font-weight: 700;
+    color: var(--color-alpaca);
+    min-width: 60px;
+}
+
+.ts-drop-name {
+    flex: 1;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+}
+
+.ts-drop-arrow {
+    color: var(--text-muted);
+    margin-left: auto;
+}
+
+/* ── Pulse Row ──────────────────────────────────────────────────── */
+.ts-pulse-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px 16px;
+}
+
+.ts-section-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-alpaca);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.ts-refresh-btn {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    padding: 4px 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.ts-refresh-btn:hover {
+    color: var(--color-alpaca);
+}
+
+.ts-refresh-btn:focus-visible,
+.ts-tab:focus-visible,
+.ts-icon-btn:focus-visible,
+.ts-scan-btn:focus-visible,
+.ts-search-go:focus-visible,
+.ts-mover-chip:focus-visible,
+.ts-search-input:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--color-alpaca) 70%, white 8%);
+    outline-offset: 2px;
+}
+
+.ts-movers-scroll {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    flex: 1;
+    scrollbar-width: none;
+    min-width: 0;
+}
+
+.ts-movers-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.ts-movers-empty {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
+
+.ts-mover-chip {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.76rem;
+    white-space: nowrap;
+    transition: transform 0.15s, opacity 0.15s;
+    background: var(--bg-surface);
+}
+
+.ts-mover-chip:hover {
+    transform: translateY(-1px);
+    opacity: 0.85;
+}
+
+.ts-mover-chip.up {
+    border-color: rgba(74, 222, 128, 0.3);
+}
+
+.ts-mover-chip.down {
+    border-color: rgba(248, 113, 113, 0.3);
+}
+
+.chip-sym {
+    font-weight: 700;
+    color: var(--color-alpaca);
+}
+
+.chip-price {
+    color: var(--text-primary);
+}
+
+.chip-chg {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.ts-mover-chip.up .chip-chg {
+    color: #4ade80;
+}
+
+.ts-mover-chip.down .chip-chg {
+    color: #f87171;
+}
+
+.chip-ai {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    color: var(--text-muted);
+    font-size: 0.68rem;
+}
+
+.ts-pulse-cards {
+    display: flex;
+    gap: 10px;
+}
+
+.ts-pulse-card {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 6px 12px;
+    white-space: nowrap;
+}
+
+.pulse-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.pulse-value {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Main Grid ──────────────────────────────────────────────────── */
+.ts-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    flex: 1;
+}
+
+/* ── Generic Panel ──────────────────────────────────────────────── */
+.ts-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.ts-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.ts-panel-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-primary);
+}
+
+/* ── Scanner Panel ──────────────────────────────────────────────── */
+.ts-scanner-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ts-price-input {
+    width: 60px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.76rem;
+    padding: 3px 6px;
+    outline: none;
+}
+
+.ts-icon-btn {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    padding: 4px 7px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.ts-icon-btn:hover {
+    color: var(--color-alpaca);
+}
+
+.ts-scan-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--color-alpaca);
+    color: #000;
+    border: none;
+    border-radius: 7px;
+    padding: 5px 12px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.ts-scan-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.ts-scan-ts {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    padding: 6px 16px;
+}
+
+.ts-progress {
+    padding: 8px 16px;
+}
+
+.ts-progress-track {
+    height: 3px;
+    background: var(--bg-surface);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.ts-progress-fill {
+    height: 100%;
+    background: var(--color-alpaca);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+}
+
+.ts-progress-label {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+    display: block;
+}
+
+.ts-scan-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.ts-tab {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 14px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-secondary);
+    font-size: 0.76rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.ts-tab:hover {
+    color: var(--text-primary);
+}
+
+.ts-tab.active {
+    color: var(--color-alpaca);
+    border-bottom-color: var(--color-alpaca);
+}
+
+.ts-tab-cnt {
+    background: var(--bg-surface);
+    border-radius: 10px;
+    padding: 1px 6px;
+    font-size: 0.65rem;
+}
+
+.ts-results-wrap {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.ts-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 40px;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.ts-results-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+}
+
+.ts-results-table th {
+    padding: 6px 10px;
+    text-align: left;
+    color: var(--text-muted);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    background: var(--bg-card);
+}
+
+.ts-results-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    color: var(--text-primary);
+}
+
+.ts-results-table tr:hover td {
+    background: var(--bg-surface);
+}
+
+.ts-ticker-cell {
+    font-family: var(--font-mono, monospace);
+}
+
+.ts-analyze-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    color: var(--color-alpaca);
+    padding: 2px 8px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background 0.15s;
+}
+
+.ts-analyze-btn:hover {
+    background: var(--bg-surface);
+}
+
+/* ── Bot Panel ──────────────────────────────────────────────────── */
+.ts-bot-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.ts-bot-status-dot.live {
+    background: #4ade80;
+    box-shadow: 0 0 8px #4ade80, 0 0 16px rgba(74, 222, 128, 0.3);
+    animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+.ts-bot-status-dot.idle {
+    background: #6b7280;
+}
+
+@keyframes pulse-dot {
+
+    0%,
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 8px #4ade80, 0 0 16px rgba(74, 222, 128, 0.3);
+    }
+
+    50% {
+        opacity: 0.5;
+        box-shadow: 0 0 3px #4ade80;
+    }
+}
+
+.ts-bot-status-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.ts-bot-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    border-radius: 7px;
+    padding: 5px 12px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    font-family: inherit;
+}
+
+.ts-bot-toggle.start {
+    background: var(--color-alpaca);
+    color: #000;
+}
+
+.ts-bot-toggle.stop {
+    background: #f87171;
+    color: #000;
+}
+
+.ts-bot-toggle:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.ts-bot-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.ts-bot-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 8px;
+    border-right: 1px solid var(--border-color);
+}
+
+.ts-bot-stat:last-child {
+    border-right: none;
+}
+
+.bstat-label {
+    font-size: 0.62rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-align: center;
+}
+
+.bstat-value {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-top: 3px;
+}
+
+.ts-bot-section {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.ts-bot-section:last-child {
+    border-bottom: none;
+}
+
+.ts-bot-section-title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+}
+
+/* Context Radar */
+.ts-radar-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ts-radar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.radar-label {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    min-width: 110px;
+}
+
+.radar-bar-wrap {
+    flex: 1;
+    height: 4px;
+    background: var(--bg-surface);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.radar-bar {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.6s ease;
+}
+
+.radar-value {
+    font-size: 0.75rem;
+    font-weight: 600;
+    min-width: 65px;
+    text-align: right;
+}
+
+/* SLM Terminal */
+.ts-slm-section {
+    flex: 1;
+    min-height: 0;
+}
+
+.ts-slm-terminal {
+    background: linear-gradient(180deg, #060610 0%, #0a0a18 100%);
+    border: 1px solid rgba(159, 194, 255, 0.18);
+    box-shadow: inset 0 1px 0 rgba(159, 194, 255, 0.06);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.69rem;
+    line-height: 1.65;
+    max-height: 165px;
+    overflow-y: auto;
+    /* Blue-tinted scrollbar for the terminal */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(159, 194, 255, 0.25) transparent;
+}
+
+.ts-slm-terminal::-webkit-scrollbar {
+    width: 4px;
+}
+
+.ts-slm-terminal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.ts-slm-terminal::-webkit-scrollbar-thumb {
+    background: rgba(159, 194, 255, 0.25);
+    border-radius: 4px;
+}
+
+.ts-slm-terminal::-webkit-scrollbar-thumb:hover {
+    background: rgba(159, 194, 255, 0.5);
+}
+
+
+.slm-line {
+    color: #94a3b8;
+    padding: 1px 0;
+    animation: slm-fade-in 0.4s ease-out;
+}
+
+@keyframes slm-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.slm-line.slm-success {
+    color: #4ade80;
+}
+
+.slm-line.slm-signal {
+    color: #facc15;
+}
+
+.slm-line.slm-ai {
+    color: #9fc2ff;
+}
+
+.slm-line.slm-error {
+    color: #f87171;
+}
+
+.slm-cursor {
+    display: inline-block;
+    color: var(--color-alpaca);
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Quick Actions */
+.ts-quick-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.ts-qa-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    font-size: 0.74rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.ts-qa-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--color-alpaca);
+}
+
+.ts-qa-btn.ts-qa-scan {
+    color: var(--color-alpaca);
+    border-color: var(--color-alpaca);
+}
+
+.ts-qa-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* General utilities */
+.text-green {
+    color: #4ade80;
+}
+
+.text-red {
+    color: #f87171;
+}
+
+.text-orange {
+    color: #f97316;
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+    .ts-main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ts-pulse-cards {
+        flex-wrap: wrap;
+    }
+}
+
+.ts-results-table th,
+.ts-results-table td,
+.ts-scan-ts,
+.ts-slm-terminal,
+.ts-pulse-card {
+    font-variant-numeric: tabular-nums;
+}
+
+.ts-results-wrap {
+    content-visibility: auto;
+    contain-intrinsic-size: 480px;
+}

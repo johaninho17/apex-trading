@@ -1,3 +1,9 @@
+# Frontend Runtime Note
+
+Use one environment consistently for this frontend. Recommended default: **WSL-first** for `npm install`, `npm run dev`, and `npm run build`. Do not switch between Windows Node and WSL Node on the same working tree during active development, because Vite/esbuild path resolution can fail with `EPERM` / access errors.
+
+Required Node version for Vite dev: **20.19+ or 22.12+**. If `npm run build` works but `npm run dev` fails with `crypto.hash is not a function`, your shell is using an older Node runtime (currently this machine is resolving npm from `C:/Program Files/nodejs`, Node 20.10).
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

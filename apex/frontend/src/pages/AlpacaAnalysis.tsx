@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Brain, Target, ShieldAlert, DollarSign, TrendingUp, TrendingDown, Loader2, CalendarDays, Calculator, Search, ArrowRight, Clock, SlidersHorizontal, CircleCheckBig, AlertTriangle, OctagonX } from 'lucide-react';
+import { Brain, Target, ShieldAlert, DollarSign, TrendingUp, TrendingDown, Loader2, CalendarDays, Calculator, Search, ArrowRight, Clock, SlidersHorizontal, CircleCheckBig, AlertTriangle, OctagonX, Sparkles, Cpu, CheckCircle2 } from 'lucide-react';
 import StockChart from '../components/StockChart';
 import TradePanel from '../components/TradePanel';
 import BacktestPanel from '../components/BacktestPanel';
@@ -104,7 +104,48 @@ export default function AlpacaAnalysis() {
     const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
-    // Earnings state
+    // Fine-tune state
+    const [fineTuneStatus, setFineTuneStatus] = useState<'idle' | 'loading' | 'training' | 'complete' | 'failed'>('idle');
+    const [fineTuneProgress, setFineTuneProgress] = useState(0);
+    const [ppoScore, setPpoScore] = useState<number | null>(null);
+    const fineTunePollRef = useRef<number | null>(null);
+
+    // PPO model score from API
+    async function fetchPpoStatus(symbol: string) {
+        try {
+            const res = await fetch(`/api/v1/stocks/${symbol}/model-status`);
+            if (!res.ok) return;
+            const d = await res.json();
+            if (d.status === 'complete') { setFineTuneStatus('complete'); setPpoScore(d.ppo_confidence ?? null); }
+            else if (d.status === 'training') { setFineTuneStatus('training'); setFineTuneProgress(d.progress ?? 0); }
+            else { setFineTuneStatus('idle'); }
+        } catch { /* ignore */ }
+    }
+
+    async function startFineTune() {
+        if (!urlTicker || fineTuneStatus === 'loading' || fineTuneStatus === 'training') return;
+        setFineTuneStatus('loading');
+        try {
+            const res = await fetch(`/api/v1/stocks/${urlTicker}/fine-tune`, { method: 'POST' });
+            if (res.status === 409) { setFineTuneStatus('training'); }
+            else if (!res.ok) throw new Error();
+            else { setFineTuneStatus('training'); setFineTuneProgress(0); }
+            // Start polling
+            fineTunePollRef.current = window.setInterval(async () => {
+                await fetchPpoStatus(urlTicker);
+                if (fineTuneStatus === 'complete' || fineTuneStatus === 'failed') {
+                    if (fineTunePollRef.current) clearInterval(fineTunePollRef.current);
+                }
+            }, 5000);
+        } catch { setFineTuneStatus('failed'); }
+    }
+
+    // Cleanup polling on unmount
+    useEffect(() => () => { if (fineTunePollRef.current) clearInterval(fineTunePollRef.current); }, []);
+
+    // Load initial fine-tune status when ticker loads
+    useEffect(() => { if (urlTicker) { setFineTuneStatus('idle'); setPpoScore(null); fetchPpoStatus(urlTicker); } }, [urlTicker]);
+
     const [earnings, setEarnings] = useState<{ safe: boolean; message: string; days_until?: number } | null>(null);
 
     // Risk calculator state
@@ -330,6 +371,33 @@ export default function AlpacaAnalysis() {
                         </span>
                     </div>
                 )}
+                {/* Fine-Tune Button — only visible when a ticker is loaded */}
+                {urlTicker && (
+                    <div className="fine-tune-wrap">
+                        {fineTuneStatus === 'complete' ? (
+                            <div className="fine-tune-badge complete">
+                                <CheckCircle2 size={14} />
+                                Model Specialized ✅
+                                {ppoScore !== null && <span className="ppo-inline">{ppoScore.toFixed(0)}% PPO</span>}
+                            </div>
+                        ) : fineTuneStatus === 'training' ? (
+                            <div className="fine-tune-badge training">
+                                <Loader2 size={14} className="spin" />
+                                Fine-tuning… {fineTuneProgress > 0 ? `${fineTuneProgress}%` : ''}
+                            </div>
+                        ) : (
+                            <button
+                                className={`fine-tune-btn ${fineTuneStatus === 'failed' ? 'failed' : ''}`}
+                                onClick={startFineTune}
+                                disabled={fineTuneStatus === 'loading'}
+                                title="Train a specialist PPO model from the universal base model for this specific stock"
+                            >
+                                {fineTuneStatus === 'loading' ? <Loader2 size={14} className="spin" /> : <Sparkles size={14} />}
+                                {fineTuneStatus === 'failed' ? 'Retry Fine-Tune' : 'Fine-Tune AI Model'}
+                            </button>
+                        )}
+                    </div>
+                )}
             </div>
 
             {/* Dashboard — shown when no ticker */}
@@ -439,6 +507,31 @@ export default function AlpacaAnalysis() {
                             </div>
                         </div>
 
+                        {/* PPO Math Score — shown if fine-tuned or universal model exists */}
+                        <div className="card ai-scores-card ppo-card">
+                            <h2><Cpu size={18} /> PPO Math Score</h2>
+                            {fineTuneStatus === 'complete' && ppoScore !== null ? (
+                                <>
+                                    <div className="scores-container">
+                                        <ScoreBar label="PPO Conviction" value={ppoScore} tone="composite" />
+                                    </div>
+                                    <div className="score-verdict">
+                                        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: '#9fc2ff', fontSize: '0.78rem' }}>
+                                            <CheckCircle2 size={13} /> Specialist model active
+                                        </span>
+                                    </div>
+                                </>
+                            ) : (
+                                <div className="ppo-placeholder">
+                                    <Sparkles size={24} style={{ color: 'var(--text-muted)' }} />
+                                    <p>Fine-tune this stock to see the PPO model's mathematical probability score alongside the AI sentiment score.</p>
+                                    <button className="fine-tune-btn" onClick={startFineTune} disabled={fineTuneStatus === 'loading' || fineTuneStatus === 'training'}>
+                                        {fineTuneStatus === 'training' ? <><Loader2 size={13} className="spin" /> Training…</> : <><Sparkles size={13} /> Fine-Tune Model</>}
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+
                         {/* Technical Indicators */}
                         <div className="card indicators-card">
                             <h2><Target size={18} /> Technical Indicators</h2>
@@ -518,35 +611,35 @@ export default function AlpacaAnalysis() {
                                     {[...data.setups]
                                         .sort((a, b) => setupPlayScore(b, calcProfile) - setupPlayScore(a, calcProfile))
                                         .map((setup, i) => (
-                                        <div className={`setup-card ${i === activeSetupIdx ? 'active' : ''}`} key={i}>
-                                            <div className="setup-name">{setup.Setup || setup.Type || `Setup ${i + 1}`}</div>
-                                            <div className="setup-details">
-                                                <div className="setup-row">
-                                                    <span>Entry</span>
-                                                    <span className="entry">${setup.Entry?.toFixed(2)}</span>
+                                            <div className={`setup-card ${i === activeSetupIdx ? 'active' : ''}`} key={i}>
+                                                <div className="setup-name">{setup.Setup || setup.Type || `Setup ${i + 1}`}</div>
+                                                <div className="setup-details">
+                                                    <div className="setup-row">
+                                                        <span>Entry</span>
+                                                        <span className="entry">${setup.Entry?.toFixed(2)}</span>
+                                                    </div>
+                                                    <div className="setup-row">
+                                                        <span>Stop Loss</span>
+                                                        <span className="stop">${setup.Stop_Loss?.toFixed(2)}</span>
+                                                    </div>
+                                                    <div className="setup-row">
+                                                        <span>Target</span>
+                                                        <span className="target">${setup.Target?.toFixed(2)}</span>
+                                                    </div>
+                                                    <div className="setup-row">
+                                                        <span>Risk:Reward</span>
+                                                        <span className="rr">{setup.Risk_Reward?.toFixed(2)}</span>
+                                                    </div>
+                                                    <div className="setup-row">
+                                                        <span>Play</span>
+                                                        <span className="rr">{setupPlayScore(setup, calcProfile).toFixed(0)}</span>
+                                                    </div>
                                                 </div>
-                                                <div className="setup-row">
-                                                    <span>Stop Loss</span>
-                                                    <span className="stop">${setup.Stop_Loss?.toFixed(2)}</span>
-                                                </div>
-                                                <div className="setup-row">
-                                                    <span>Target</span>
-                                                    <span className="target">${setup.Target?.toFixed(2)}</span>
-                                                </div>
-                                                <div className="setup-row">
-                                                    <span>Risk:Reward</span>
-                                                    <span className="rr">{setup.Risk_Reward?.toFixed(2)}</span>
-                                                </div>
-                                                <div className="setup-row">
-                                                    <span>Play</span>
-                                                    <span className="rr">{setupPlayScore(setup, calcProfile).toFixed(0)}</span>
-                                                </div>
+                                                <button className="btn-execute buy-setup-btn" onClick={() => handleSetupBuy(setup, i)}>
+                                                    Buy Setup
+                                                </button>
                                             </div>
-                                            <button className="btn-execute buy-setup-btn" onClick={() => handleSetupBuy(setup, i)}>
-                                                Buy Setup
-                                            </button>
-                                        </div>
-                                    ))}
+                                        ))}
                                 </div>
                             )}
                         </div>

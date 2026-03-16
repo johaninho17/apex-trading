@@ -9,13 +9,12 @@ interface WSMessage {
 type MessageHandler = (msg: WSMessage) => void;
 
 function buildWsUrl(): string {
-    // In dev, bypass Vite WS proxy to avoid proxy EPIPE churn on reconnect/teardown.
-    // In prod, use same-origin WebSocket endpoint.
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
     if (import.meta.env.DEV) {
         const devWs = (import.meta.env.VITE_WS_URL as string | undefined)?.trim();
         if (devWs) return devWs;
-        return `${protocol}//127.0.0.1:8000/ws`;
+        const host = window.location.hostname || '127.0.0.1';
+        return `${protocol}//${host}:8000/ws`;
     }
     return `${protocol}//${window.location.host}/ws`;
 }
